@@ -3,11 +3,12 @@ from discord.ext import commands
 from discord import ui
 import sqlite3
 import re
+import os
 
 # ==========================================
 # CONFIGURAÇÕES
 # ==========================================
-TOKEN = "MTM3MDYzMDA2NDg1MjU3MDE2Mg.GO1qj3.KNpGB9UynF7g3UNxJwu4m43E6TCtBe4kkAor-g"
+TOKEN = os.getenv("TOKEN_ROTA")  # Certifique-se de definir a variável de ambiente com seu token
 FORUM_CHANNEL_ID = 1501020005477912667
 DATABASE_NAME = "fichas_policiais.db"
 AUTHORIZED_ROLES = [1497235189296791652]  # IDs dos cargos autorizados a editar as fichas
