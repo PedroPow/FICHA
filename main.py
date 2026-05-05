@@ -11,7 +11,11 @@ import os
 TOKEN = os.getenv("TOKEN_ROTA")  # Certifique-se de definir a variável de ambiente com seu token
 FORUM_CHANNEL_ID = 1501020005477912667
 DATABASE_NAME = "fichas_policiais.db"
-AUTHORIZED_ROLES = [1497235189296791652]  # IDs dos cargos autorizados a editar as fichas
+AUTHORIZED_ROLES = [
+    1497235189296791652,
+    1492395648014876733,
+    1492395647427416124    
+]  
 
 SITUACOES = ["Efetivo", "Estágio", "Exonerado", "Baixa"]
 
@@ -73,11 +77,11 @@ CURSOS = [
 ]
 
 LAUREAS = [
-    ("LÁUREA 5°", "<:lurea5:1481619463840333845>"),
-    ("LÁUREA 4°", "<:lurea4:1481619742757224478>"),
-    ("LÁUREA 3°", "<:lurea3:1481619849133424690>"),
-    ("LÁUREA 2°", "<:lurea2:1481619935745806426>"),
-    ("LÁUREA 1°", "<:lurea1:1481620008650932347>")
+    ("LÁUREA 5° Grau", "<:lurea5:1481619463840333845>"),
+    ("LÁUREA 4° Grau", "<:lurea4:1481619742757224478>"),
+    ("LÁUREA 3° Grau", "<:lurea3:1481619849133424690>"),
+    ("LÁUREA 2° Grau", "<:lurea2:1481619935745806426>"),
+    ("LÁUREA 1° Grau", "<:lurea1:1481620008650932347>")
 ]
 
 # ==========================================
@@ -279,28 +283,6 @@ class ModalCriarFicha(ui.Modal, title="🚨 Registro de Novo Policial"):
             thread_bundle = await forum.create_thread(name=f"Ficha: {self.nome.value}", embed=embed, view=EdicaoFichaView())
             update_ficha(interaction.user.id, thread_id=str(thread_bundle.thread.id))
             await interaction.followup.send(f"✅ Ficha enviada ao fórum: {thread_bundle.thread.mention}", ephemeral=True)
-
-class BotPolicial(commands.Bot):
-    def __init__(self):
-        super().__init__(command_prefix="!", intents=discord.Intents.all())
-async def setup_hook(self):
-    init_db()
-    # Registra a view das fichas (fórum)
-    self.add_view(EdicaoFichaView())
-    
-    # Registra a view do botão de registro (botão principal)
-    # Isso faz o Discord lembrar do custom_id "reg_prontuario"
-    view_principal = ui.View(timeout=None)
-    btn = ui.Button(label="Criar Prontuário", style=discord.ButtonStyle.secondary, emoji="📁", custom_id="reg_prontuario")
-    
-    async def callback_global(interaction):
-        await interaction.response.send_modal(ModalCriarFicha())
-    
-    btn.callback = callback_global
-    view_principal.add_item(btn)
-    self.add_view(view_principal)        
-
-bot = BotPolicial()
 
 class BotPolicial(commands.Bot):
     def __init__(self):
