@@ -11,7 +11,7 @@ import os
 TOKEN = os.getenv("TOKEN_ROTA")  # Certifique-se de definir a variável de ambiente com seu token
 FORUM_CHANNEL_ID = 1501020005477912667
 DATABASE_NAME = "fichas_policiais.db"
-AUTHORIZED_ROLES = [1492395648014876733] # IDs dos cargos autorizados a usar os comandos (ex: P1 - Recurso Humano) 
+AUTHORIZED_ROLES = [1497235189296791652] # IDs dos cargos autorizados a usar os comandos (ex: P1 - Recurso Humano) 
 
 SITUACOES = ["Efetivo", "Estágio", "Exonerado", "Baixa"]
 
