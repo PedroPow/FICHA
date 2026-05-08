@@ -94,10 +94,19 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS fichas (
             user_id TEXT PRIMARY KEY,
-            nome TEXT, registro TEXT, foto TEXT DEFAULT '',
-            patente TEXT DEFAULT 'Soldado PM', situacao TEXT DEFAULT 'Estágio',
-            laurea TEXT DEFAULT 'Nenhuma', medalhas TEXT DEFAULT '',
-            cursos TEXT DEFAULT '', thread_id TEXT DEFAULT ''
+            nome TEXT,
+            registro TEXT,
+            foto TEXT DEFAULT '',
+
+            patente TEXT DEFAULT 'Soldado PM',
+            situacao TEXT DEFAULT 'Estágio',
+
+            laurea TEXT DEFAULT 'Nenhuma',
+            medalhas TEXT DEFAULT '',
+            cursos TEXT DEFAULT '',
+            certificados TEXT DEFAULT '',
+
+            thread_id TEXT DEFAULT ''
         )
     ''')
     conn.commit()
@@ -148,6 +157,18 @@ def gerar_embed_ficha(user_id):
     # CORREÇÃO: Removido as crases de fora da variável txt_cur
     embed.add_field(name="CURSOS:", value=f"{txt_cur if txt_cur else 'Nenhum'}\n------------------------------", inline=False)
 
+    txt_cert = ""
+
+    if f['certificados']:
+        for cert in f['certificados'].split(", "):
+            txt_cert += f"🎓 {cert}\n"
+
+    embed.add_field(
+        name="CERTIFICADOS:",
+        value=f"{txt_cert if txt_cert else 'Nenhum'}\n------------------------------",
+        inline=False
+    )    
+
     return embed
     
     # padrão <:nome:id>
@@ -166,6 +187,189 @@ def gerar_embed_ficha(user_id):
 
     # fallback → emoji unicode ou string
     return emoji_str
+
+class MenuPrincipal(ui.Select):
+
+    def __init__(self):
+
+        options = [
+            discord.SelectOption(
+                label="Gerenciar Patente",
+                emoji="🎖️",
+                value="patente"
+            ),
+
+            discord.SelectOption(
+                label="Gerenciar Situação",
+                emoji="📋",
+                value="situacao"
+            ),
+
+            discord.SelectOption(
+                label="Gerenciar Láurea",
+                emoji="🏅",
+                value="laurea"
+            ),
+
+            discord.SelectOption(
+                label="Gerenciar Cursos",
+                emoji="📚",
+                value="cursos"
+            ),
+
+            discord.SelectOption(
+                label="Gerenciar Medalhas",
+                emoji="🎗️",
+                value="medalhas"
+            ),
+
+            discord.SelectOption(
+                label="Gerenciar Certificados",
+                emoji="🎓",
+                value="certificados"
+            )
+        ]
+
+        super().__init__(
+            placeholder="Selecione uma opção...",
+            options=options,
+            custom_id="menu_principal"
+        )
+
+    async def callback(self, interaction: discord.Interaction):
+
+        valor = self.values[0]
+
+        if valor == "patente":
+            return await interaction.response.send_message(
+                view=ViewPatente(),
+                ephemeral=True
+            )
+
+        elif valor == "situacao":
+            return await interaction.response.send_message(
+                view=ViewSituacao(),
+                ephemeral=True
+            )
+
+        elif valor == "laurea":
+            return await interaction.response.send_message(
+                view=ViewLaurea(),
+                ephemeral=True
+            )
+
+        elif valor == "cursos":
+            return await interaction.response.send_message(
+                view=ViewCursos(),
+                ephemeral=True
+            )
+
+        elif valor == "medalhas":
+            return await interaction.response.send_message(
+                view=ViewMedalhas(),
+                ephemeral=True
+            )
+
+        elif valor == "certificados":
+            return await interaction.response.send_modal(
+                ModalCertificado()
+            )
+        
+# ==========================================
+# VIEWS SEPARADAS
+# ==========================================
+
+class ViewPatente(ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=120)
+
+        self.add_item(
+            SelectGeral(
+                PATENTES,
+                "Selecionar patente",
+                "patente",
+                "s_p"
+            )
+        )
+
+
+class ViewSituacao(ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=120)
+
+        self.add_item(
+            SelectGeral(
+                [(s, None) for s in SITUACOES],
+                "Selecionar situação",
+                "situacao",
+                "s_s"
+            )
+        )
+
+
+class ViewLaurea(ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=120)
+
+        self.add_item(
+            SelectGeral(
+                LAUREAS,
+                "Selecionar láurea",
+                "laurea",
+                "s_l"
+            )
+        )
+
+
+class ViewCursos(ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=120)
+
+        self.add_item(
+            SelectGeral(
+                CURSOS,
+                "Gerenciar cursos",
+                "cursos",
+                "s_c",
+                True
+            )
+        )
+
+
+class ViewMedalhas(ui.View):
+
+    def __init__(self):
+        super().__init__(timeout=120)
+
+        self.add_item(
+            SelectGeral(
+                MEDALHAS,
+                "Gerenciar medalhas",
+                "medalhas",
+                "s_m",
+                True
+            )
+        )        
+
+    def parse_emoji(emoji_str):
+
+        if not emoji_str:
+            return None
+
+        match = re.match(r"<:([a-zA-Z0-9_]+):(\d+)>", emoji_str)
+
+        if match:
+            name, id_ = match.groups()
+            return discord.PartialEmoji(
+                name=name,
+                id=int(id_)
+            )
+
+        return emoji_str        
 
 # ==========================================
 # SELECTS E MODAIS
@@ -241,23 +445,11 @@ class SelectGeral(ui.Select):
         await interaction.followup.send(mensagem_feedback, ephemeral=True)
 
 class EdicaoFichaView(ui.View):
-    def __init__(self, user_id=None):
+
+    def __init__(self):
         super().__init__(timeout=None)
-        # Se passarmos o user_id, podemos carregar a ficha e já remover o que ele tem
-        valores = self.obter_valores_atuais(user_id) if user_id else {}
 
-        self.add_item(SelectGeral(PATENTES, "Gerenciar Patente", "patente", "s_p"))
-        self.add_item(SelectGeral([(s, None) for s in SITUACOES], "Gerenciar Situação", "situacao", "s_s"))
-        self.add_item(SelectGeral(LAUREAS, "Gerenciar Láurea", "laurea", "s_l"))
-        
-        # Selects que usam o filtro
-        self.add_item(SelectGeral(CURSOS, "Gerenciar Cursos", "cursos", "s_c", True))
-        self.add_item(SelectGeral(MEDALHAS, "Gerenciar Medalhas", "medalhas", "s_m", True))
-
-    def obter_valores_atuais(self, user_id):
-        # Opcional: Lógica para carregar do banco no init se desejar
-        # que o menu já nasça filtrado ao abrir a thread.
-        return {}
+        self.add_item(MenuPrincipal())
 
 class ModalCriarFicha(ui.Modal, title="🚨 Registro de Novo Policial"):
     nome = ui.TextInput(label="Nome no RP", placeholder="Ex: Sargento Oliveira", min_length=3, max_length=50)
@@ -280,24 +472,120 @@ class ModalCriarFicha(ui.Modal, title="🚨 Registro de Novo Policial"):
             update_ficha(interaction.user.id, thread_id=str(thread_bundle.thread.id))
             await interaction.followup.send(f"✅ Ficha enviada ao fórum: {thread_bundle.thread.mention}", ephemeral=True)
 
+class ModalCertificado(ui.Modal, title="Gerenciar Certificados"):
+
+    numero = ui.TextInput(
+        label="N° do CERTIFICADO",
+        placeholder="Ex: ROTA-2026-0001",
+        required=True,
+        max_length=50
+    )
+
+async def on_submit(self, interaction: discord.Interaction):
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM fichas WHERE thread_id = ?",
+        (str(interaction.channel_id),)
+    )
+
+    f = cursor.fetchone()
+
+    conn.close()
+
+    if not f:
+        return await interaction.response.send_message(
+            "❌ Ficha não encontrada.",
+            ephemeral=True
+        )
+
+    user_id = f['user_id']
+
+    certificados = (
+        f['certificados'].split(", ")
+        if f['certificados']
+        else []
+    )
+
+    numero = self.numero.value.strip()
+
+    if numero in certificados:
+
+        certificados.remove(numero)
+
+        msg = f"❌ Certificado removido: `{numero}`"
+
+    else:
+
+        certificados.append(numero)
+
+        msg = f"✅ Certificado adicionado: `{numero}`"
+
+    final = ", ".join(certificados)
+
+    update_ficha(
+        user_id,
+        certificados=final
+    )
+
+    # Atualiza mensagem da thread
+    async for message in interaction.channel.history(limit=20):
+
+        if (
+            message.author == interaction.client.user
+            and message.embeds
+            and message.embeds[0].title == "📁 PRONTUÁRIO POLICIAL"
+        ):
+
+            await message.edit(
+                embed=gerar_embed_ficha(user_id),
+                view=EdicaoFichaView()
+            )
+
+            break
+
+    await interaction.response.send_message(
+        msg,
+        ephemeral=True
+    )
+
 class BotPolicial(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=discord.Intents.all())
 
     async def setup_hook(self):
+
         init_db()
-        # 1. Torna os selects das fichas persistentes
+
         self.add_view(EdicaoFichaView())
-        
-        # 2. Torna o botão de "Criar Prontuário" persistente (fundamental)
+
+        self.add_view(ViewPatente())
+        self.add_view(ViewSituacao())
+        self.add_view(ViewLaurea())
+        self.add_view(ViewCursos())
+        self.add_view(ViewMedalhas())
+
+        # botão principal
         view_registro = ui.View(timeout=None)
-        btn = ui.Button(label="Criar Prontuário", style=discord.ButtonStyle.secondary, emoji="📁", custom_id="reg_prontuario")
-        
+
+        btn = ui.Button(
+            label="Criar Prontuário",
+            style=discord.ButtonStyle.secondary,
+            emoji="📁",
+            custom_id="reg_prontuario"
+        )
+
         async def btn_callback(interaction):
-            await interaction.response.send_modal(ModalCriarFicha())
-        
+            await interaction.response.send_modal(
+                ModalCriarFicha()
+            )
+
         btn.callback = btn_callback
+
         view_registro.add_item(btn)
+
         self.add_view(view_registro)
 
     async def on_ready(self):
