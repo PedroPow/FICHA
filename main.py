@@ -8,81 +8,70 @@ import os
 # ==========================================
 # CONFIGURAÇÕES
 # ==========================================
-TOKEN = os.getenv("TOKEN_ROTA")  # Certifique-se de definir a variável de ambiente com seu token
+TOKEN = os.getenv("TOKEN_ROTA")
 FORUM_CHANNEL_ID = 1501020005477912667
 DATABASE_NAME = "fichas_policiais.db"
-AUTHORIZED_ROLES = [1497235189296791652] # IDs dos cargos autorizados a usar os comandos (ex: P1 - Recurso Humano) 
+AUTHORIZED_ROLES = [1497235189296791652] 
 
 SITUACOES = ["Efetivo", "Estágio", "Exonerado", "Baixa"]
 
 # ==========================================
-# LISTAS CORRIGIDAS (APENAS NOME:ID)
+# LISTAS
 # ==========================================
 
 PATENTES = [
-    ("Soldado PM", "<:SD:1480800971604103310>"), 
-    ("Cabo PM", "<:CABO:1480800948434767965>"),
-    ("Aluno-Sargento PM", "<:AlunoSargento:1495511772256538654>"),
-    ("3º Sargento PM", "<:3SGT:1480800757027573833>"), 
-    ("2º Sargento PM", "<:2SGT:1480800372267421850>"),
-    ("1º Sargento PM", "<:1SGT:1480800346375983226>"), 
-    ("Subtenente PM", "<:SUBTEN:1480800319553273898>"),
-    ("Aspirante Oficial", "<:ASPOFC:1480800296748847205>"), 
-    ("2° Tenente PM", "<:2TENENTE:1480800246337638511>"),
-    ("1° Tenente PM", "<:1TENENTE:1480800221930983538>"), 
-    ("Capitão PM", "<:CAPITO:1480800193841463367>"),
-    ("Major PM", "<:MAJOR:1480800161646116956>"), 
+    ("Soldado PM", "<:SD:1480800971604103310>"), ("Cabo PM", "<:CABO:1480800948434767965>"),
+    ("Aluno-Sargento PM", "<:AlunoSargento:1495511772256538654>"), ("3º Sargento PM", "<:3SGT:1480800757027573833>"), 
+    ("2º Sargento PM", "<:2SGT:1480800372267421850>"), ("1º Sargento PM", "<:1SGT:1480800346375983226>"), 
+    ("Subtenente PM", "<:SUBTEN:1480800319553273898>"), ("Aspirante Oficial", "<:ASPOFC:1480800296748847205>"), 
+    ("2° Tenente PM", "<:2TENENTE:1480800246337638511>"), ("1° Tenente PM", "<:1TENENTE:1480800221930983538>"), 
+    ("Capitão PM", "<:CAPITO:1480800193841463367>"), ("Major PM", "<:MAJOR:1480800161646116956>"), 
     ("Tenente Coronel PM", "<:TENCEL:1480800122341298186>")
 ]
 
 MEDALHAS = [
-    ("CENTENARIO DE ROTA", "<:CENTENARIO_ROTA:1501023340578476165>"),
-    ("CENTENARIO APMBB", "<:CENTENARIO_APMBB:1501023453266841741>"),
-    ("CENTENARIO ESSGT", "<:ESSgt:1501023754812260454>"),
-    ("CENTENARIO DSA CG", "<:DSA_CG:1501023707685060730>"),
-    ("MERITO DA JUSTIÇA E DISCIPLINA", "<:JUSTICA_DISCIPLINA:1501024033490337872>"),
-    ("MERITO E DEDICAÇÃO", "<:DEDICACAO:1501024134182731806>"),
-    ("PEDRO DIAS DE CAMPOS", "<:PEDRO_D_C:1501024183302492180>"),
-    ("SISQUENTENÁRIO DA PM", "<:150_PMESP:1501024260091547648>"),
-    ("VALOR MILITAR OURO", "<:VALOR_MILITAR:1501025277688549458>"),
-    ("VALOR MILITAR PRATA", "<:VALOR_MILITAR:1501025277688549458>"),
-    ("VALOR MILITAR BRONZE", "<:VALOR_MILITAR:1501025277688549458>"),
-    ("MEDALHA FORÇA TÁTICA", "<:MEDALHA_FT:1501023860731150671>"),
-    ("MERITO DAS COMUNICAÇÕES", "<:COMUNICACAO:1501024095893065778>"),
-    ("MEDALHA ROCAM", "<:ROCAM:1501024212364693534>")  
+    ("CENTENARIO DE ROTA", "<:CENTENARIO_ROTA:1501023340578476165>"), ("CENTENARIO APMBB", "<:CENTENARIO_APMBB:1501023453266841741>"),
+    ("CENTENARIO ESSGT", "<:ESSgt:1501023754812260454>"), ("CENTENARIO DSA CG", "<:DSA_CG:1501023707685060730>"),
+    ("MERITO DA JUSTIÇA E DISCIPLINA", "<:JUSTICA_DISCIPLINA:1501024033490337872>"), ("MERITO E DEDICAÇÃO", "<:DEDICACAO:1501024134182731806>"),
+    ("PEDRO DIAS DE CAMPOS", "<:PEDRO_D_C:1501024183302492180>"), ("SISQUENTENÁRIO DA PM", "<:150_PMESP:1501024260091547648>"),
+    ("VALOR MILITAR OURO", "<:VALOR_MILITAR:1501025277688549458>"), ("VALOR MILITAR PRATA", "<:VALOR_MILITAR:1501025277688549458>"),
+    ("VALOR MILITAR BRONZE", "<:VALOR_MILITAR:1501025277688549458>"), ("MEDALHA FORÇA TÁTICA", "<:MEDALHA_FT:1501023860731150671>"),
+    ("MERITO DAS COMUNICAÇÕES", "<:COMUNICACAO:1501024095893065778>"), ("MEDALHA ROCAM", "<:ROCAM:1501024212364693534>")
 ]
 
 CURSOS = [
-    ("Curso Op. Especial", "<:CURSO1:1500711626221945002>"),
-    ("Curso Superior de Polícia Militar", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Aperfeiçoamento de Oficiais", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Formação de Oficiais", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Formação de Sargentos", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Formação de Cabos", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Formação de Soldados", "<:CURSO1:1500711626221945002>"),
-    ("Curso de P.O.P", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Abordagem e Posicionamento", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Modulação", "<:CURSO1:1500711626221945002>"),
-    ("Curso de Confecção de BOPM", "<:CURSO1:1500711626221945002>"),
-    ("Curso de TAT I", "<:CURSO1:1500711626221945002>"),
-    ("Curso de TAT II", "<:CURSO1:1500711626221945002>"),
-    ("Curso de TAT III", "<:CURSO1:1500711626221945002>"),
-    ("SAT A", "<:CURSO1:1500711626221945002>"),
-    ("SAT B", "<:CURSO1:1500711626221945002>"),
-
+    ("Curso Op. Especial", "<:CURSO1:1500711626221945002>"), ("Curso Superior de Polícia Militar", "<:CURSO1:1500711626221945002>"),
+    ("Curso de Aperfeiçoamento de Oficiais", "<:CURSO1:1500711626221945002>"), ("Curso de Formação de Oficiais", "<:CURSO1:1500711626221945002>"),
+    ("Curso de Formação de Sargentos", "<:CURSO1:1500711626221945002>"), ("Curso de Formação de Cabos", "<:CURSO1:1500711626221945002>"),
+    ("Curso de Formação de Soldados", "<:CURSO1:1500711626221945002>"), ("Curso de P.O.P", "<:CURSO1:1500711626221945002>"),
+    ("Curso de Abordagem e Posicionamento", "<:CURSO1:1500711626221945002>"), ("Curso de Modulação", "<:CURSO1:1500711626221945002>"),
+    ("Curso de Confecção de BOPM", "<:CURSO1:1500711626221945002>"), ("Curso de TAT I", "<:CURSO1:1500711626221945002>"),
+    ("Curso de TAT II", "<:CURSO1:1500711626221945002>"), ("Curso de TAT III", "<:CURSO1:1500711626221945002>"),
+    ("SAT A", "<:CURSO1:1500711626221945002>"), ("SAT B", "<:CURSO1:1500711626221945002>")
 ]
 
 LAUREAS = [
-    ("LÁUREA 5° Grau", "<:lurea5:1481619463840333845>"),
-    ("LÁUREA 4° Grau", "<:lurea4:1481619742757224478>"),
-    ("LÁUREA 3° Grau", "<:lurea3:1481619849133424690>"),
-    ("LÁUREA 2° Grau", "<:lurea2:1481619935745806426>"),
+    ("LÁUREA 5° Grau", "<:lurea5:1481619463840333845>"), ("LÁUREA 4° Grau", "<:lurea4:1481619742757224478>"),
+    ("LÁUREA 3° Grau", "<:lurea3:1481619849133424690>"), ("LÁUREA 2° Grau", "<:lurea2:1481619935745806426>"),
     ("LÁUREA 1° Grau", "<:lurea1:1481620008650932347>")
 ]
 
 # ==========================================
-# BANCO DE DADOS E LÓGICA (Mantido do seu original)
+# UTILITÁRIOS
 # ==========================================
+
+def parse_emoji(emoji_str):
+    if not emoji_str: return None
+    match = re.match(r"<:([a-zA-Z0-9_]+):(\d+)>", emoji_str)
+    if match:
+        name, id_ = match.groups()
+        return discord.PartialEmoji(name=name, id=int(id_))
+    return emoji_str
+
+# ==========================================
+# BANCO DE DADOS
+# ==========================================
+
 def get_db_connection():
     conn = sqlite3.connect(DATABASE_NAME)
     conn.row_factory = sqlite3.Row
@@ -94,18 +83,10 @@ def init_db():
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS fichas (
             user_id TEXT PRIMARY KEY,
-            nome TEXT,
-            registro TEXT,
-            foto TEXT DEFAULT '',
-
-            patente TEXT DEFAULT 'Soldado PM',
-            situacao TEXT DEFAULT 'Estágio',
-
-            laurea TEXT DEFAULT 'Nenhuma',
-            medalhas TEXT DEFAULT '',
-            cursos TEXT DEFAULT '',
-            certificados TEXT DEFAULT '',
-
+            nome TEXT, registro TEXT, foto TEXT DEFAULT '',
+            patente TEXT DEFAULT 'Soldado PM', situacao TEXT DEFAULT 'Estágio',
+            laurea TEXT DEFAULT 'Nenhuma', medalhas TEXT DEFAULT '',
+            cursos TEXT DEFAULT '', certificados TEXT DEFAULT '',
             thread_id TEXT DEFAULT ''
         )
     ''')
@@ -145,262 +126,32 @@ def gerar_embed_ficha(user_id):
     if f['medalhas']:
         for m_name in f['medalhas'].split(", "):
             m_emoji = next((e for n, e in MEDALHAS if n == m_name), "🎖️")
-            txt_med += f"{m_emoji} {m_name}\n" # Removido crases daqui também
-    # CORREÇÃO: Removido as crases de fora da variável txt_med
+            txt_med += f"{m_emoji} {m_name}\n"
     embed.add_field(name="MEDALHAS:", value=f"{txt_med if txt_med else 'Nenhuma'}\n------------------------------", inline=False)
 
     txt_cur = ""
     if f['cursos']:
         for c_name in f['cursos'].split(", "):
             c_emoji = next((e for n, e in CURSOS if n == c_name), "📚")
-            txt_cur += f"{c_emoji} {c_name}\n" # Removido crases daqui também
-    # CORREÇÃO: Removido as crases de fora da variável txt_cur
+            txt_cur += f"{c_emoji} {c_name}\n"
     embed.add_field(name="CURSOS:", value=f"{txt_cur if txt_cur else 'Nenhum'}\n------------------------------", inline=False)
 
     txt_cert = ""
-
     if f['certificados']:
         for cert in f['certificados'].split(", "):
             txt_cert += f"🎓 {cert}\n"
-
-    embed.add_field(
-        name="CERTIFICADOS:",
-        value=f"{txt_cert if txt_cert else 'Nenhum'}\n------------------------------",
-        inline=False
-    )    
+    embed.add_field(name="CERTIFICADOS:", value=f"{txt_cert if txt_cert else 'Nenhum'}\n------------------------------", inline=False)
 
     return embed
-    
-    # padrão <:nome:id>
-    match = re.match(r"<:([a-zA-Z0-9_]+):(\d+)>", emoji_str)
-    if match:
-        name, id_ = match.groups()
-        return discord.PartialEmoji(name=name, id=int(id_))
-    
-    # padrão NOME:ID (tipo suas PATENTES e CURSOS)
-    if ":" in emoji_str:
-        try:
-            name, id_ = emoji_str.split(":")
-            return discord.PartialEmoji(name=name, id=int(id_))
-        except:
-            pass
-
-    # fallback → emoji unicode ou string
-    return emoji_str
-
-class MenuPrincipal(ui.Select):
-
-    def __init__(self):
-
-        options = [
-            discord.SelectOption(
-                label="Gerenciar Patente",
-                emoji="🎖️",
-                value="patente"
-            ),
-
-            discord.SelectOption(
-                label="Gerenciar Situação",
-                emoji="📋",
-                value="situacao"
-            ),
-
-            discord.SelectOption(
-                label="Gerenciar Láurea",
-                emoji="🏅",
-                value="laurea"
-            ),
-
-            discord.SelectOption(
-                label="Gerenciar Cursos",
-                emoji="📚",
-                value="cursos"
-            ),
-
-            discord.SelectOption(
-                label="Gerenciar Medalhas",
-                emoji="🎗️",
-                value="medalhas"
-            ),
-
-            discord.SelectOption(
-                label="Gerenciar Certificados",
-                emoji="🎓",
-                value="certificados"
-            )
-        ]
-
-        super().__init__(
-            placeholder="Selecione uma opção...",
-            options=options,
-            custom_id="menu_principal"
-        )
-
-    async def callback(self, interaction: discord.Interaction):
-
-        valor = self.values[0]
-
-        if valor == "patente":
-            return await interaction.response.send_message(
-                view=ViewPatente(),
-                ephemeral=True
-            )
-
-        elif valor == "situacao":
-            return await interaction.response.send_message(
-                view=ViewSituacao(),
-                ephemeral=True
-            )
-
-        elif valor == "laurea":
-            return await interaction.response.send_message(
-                view=ViewLaurea(),
-                ephemeral=True
-            )
-
-        elif valor == "cursos":
-            return await interaction.response.send_message(
-                view=ViewCursos(),
-                ephemeral=True
-            )
-
-        elif valor == "medalhas":
-            return await interaction.response.send_message(
-                view=ViewMedalhas(),
-                ephemeral=True
-            )
-
-        elif valor == "certificados":
-            return await interaction.response.send_modal(
-                ModalCertificado()
-            )
-        
-# ==========================================
-# VIEWS SEPARADAS
-# ==========================================
-
-class ViewPatente(ui.View):
-
-    def __init__(self):
-        super().__init__(timeout=120)
-
-        self.add_item(
-            SelectGeral(
-                PATENTES,
-                "Selecionar patente",
-                "patente",
-                "s_p"
-            )
-        )
-
-
-class ViewSituacao(ui.View):
-
-    def __init__(self):
-        super().__init__(timeout=120)
-
-        self.add_item(
-            SelectGeral(
-                [(s, None) for s in SITUACOES],
-                "Selecionar situação",
-                "situacao",
-                "s_s"
-            )
-        )
-
-
-class ViewLaurea(ui.View):
-
-    def __init__(self):
-        super().__init__(timeout=120)
-
-        self.add_item(
-            SelectGeral(
-                LAUREAS,
-                "Selecionar láurea",
-                "laurea",
-                "s_l"
-            )
-        )
-
-
-class ViewCursos(ui.View):
-
-    def __init__(self):
-        super().__init__(timeout=120)
-
-        self.add_item(
-            SelectGeral(
-                CURSOS,
-                "Gerenciar cursos",
-                "cursos",
-                "s_c",
-                True
-            )
-        )
-
-
-class ViewMedalhas(ui.View):
-
-    def __init__(self):
-        super().__init__(timeout=120)
-
-        self.add_item(
-            SelectGeral(
-                MEDALHAS,
-                "Gerenciar medalhas",
-                "medalhas",
-                "s_m",
-                True
-            )
-        )        
-
-    def parse_emoji(emoji_str):
-
-        if not emoji_str:
-            return None
-
-        match = re.match(r"<:([a-zA-Z0-9_]+):(\d+)>", emoji_str)
-
-        if match:
-            name, id_ = match.groups()
-            return discord.PartialEmoji(
-                name=name,
-                id=int(id_)
-            )
-
-        return emoji_str        
 
 # ==========================================
 # SELECTS E MODAIS
 # ==========================================
-class SelectGeral(ui.Select):
-    def __init__(self, options_data, placeholder, db_field, custom_id, multi=False):
-        self.options_data = options_data
-        self.db_field = db_field
-        self.multi = multi
-        
-        processed_options = []
-        for label, emoji_str in options_data:
-            try:
-                emoji_obj = parse_emoji(emoji_str)
-                processed_options.append(discord.SelectOption(label=label, emoji=emoji_obj))
-            except:
-                processed_options.append(discord.SelectOption(label=label))
 
-        super().__init__(
-            placeholder=placeholder,
-            min_values=1,
-            max_values=1, # Seleciona um por vez para alternar (Toggle)
-            options=processed_options,
-            custom_id=custom_id
-        )
+class ModalCertificado(ui.Modal, title="Gerenciar Certificados"):
+    numero = ui.TextInput(label="N° do CERTIFICADO", placeholder="Ex: ROTA-2026-0001", required=True, max_length=50)
 
-    async def callback(self, interaction: discord.Interaction):
-        # 🔒 Permissão
-        if not any(role.id in AUTHORIZED_ROLES for role in interaction.user.roles):
-            return await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
-
+    async def on_submit(self, interaction: discord.Interaction):
         conn = get_db_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM fichas WHERE thread_id = ?", (str(interaction.channel_id),))
@@ -410,45 +161,120 @@ class SelectGeral(ui.Select):
         if not f:
             return await interaction.response.send_message("❌ Ficha não encontrada.", ephemeral=True)
 
-        selecionado = self.values[0]
         user_id = f['user_id']
-        
-        # --- LÓGICA DE TOGGLE (ADICIONAR/REMOVER) ---
-        if self.multi:
-            # Pega a lista atual do banco
-            itens_atuais = f[self.db_field].split(", ") if f[self.db_field] else []
-            
-            if selecionado in itens_atuais:
-                # Se já tem, REMOVE
-                itens_atuais.remove(selecionado)
-                mensagem_feedback = f"✅ Removido: **{selecionado}**"
-            else:
-                # Se não tem, ADICIONA
-                itens_atuais.append(selecionado)
-                mensagem_feedback = f"✅ Adicionado: **{selecionado}**"
-            
-            # Limpa lixo e reconstrói a string
-            itens_atuais = [x for x in itens_atuais if x and x not in ["Nenhuma", "Nenhum"]]
-            final_value = ", ".join(itens_atuais)
+        certificados = f['certificados'].split(", ") if f['certificados'] else []
+        numero = self.numero.value.strip()
+
+        if numero in certificados:
+            certificados.remove(numero)
+            msg = f"❌ Certificado removido: `{numero}`"
         else:
-            # Para Patente/Situação apenas troca (não remove, pois o policial sempre tem uma)
-            final_value = selecionado
-            mensagem_feedback = f"✅ Alterado para: **{selecionado}**"
+            certificados.append(numero)
+            msg = f"✅ Certificado adicionado: `{numero}`"
 
-        # 💾 Salva no banco
-        update_ficha(user_id, **{self.db_field: final_value})
+        final = ", ".join([c for c in certificados if c])
+        update_ficha(user_id, certificados=final)
 
-        # 🔄 Atualiza o Embed e envia uma resposta rápida (ephemeral)
-        await interaction.response.edit_message(embed=gerar_embed_ficha(user_id))
+        # Atualiza mensagem da thread
+        async for message in interaction.channel.history(limit=20):
+            if message.author == interaction.client.user and message.embeds and message.embeds[0].title == "📁 PRONTUÁRIO POLICIAL":
+                await message.edit(embed=gerar_embed_ficha(user_id))
+                break
+
+        await interaction.response.send_message(msg, ephemeral=True)
+
+class MenuPrincipal(ui.Select):
+    def __init__(self):
+        options = [
+            discord.SelectOption(label="Gerenciar Patente", emoji="🎖️", value="patente"),
+            discord.SelectOption(label="Gerenciar Situação", emoji="📋", value="situacao"),
+            discord.SelectOption(label="Gerenciar Láurea", emoji="🏅", value="laurea"),
+            discord.SelectOption(label="Gerenciar Cursos", emoji="📚", value="cursos"),
+            discord.SelectOption(label="Gerenciar Medalhas", emoji="🎗️", value="medalhas"),
+            discord.SelectOption(label="Gerenciar Certificados", emoji="🎓", value="certificados")
+        ]
+        super().__init__(placeholder="Selecione uma opção...", options=options, custom_id="menu_principal")
+
+    async def callback(self, interaction: discord.Interaction):
+        valor = self.values[0]
+        if valor == "patente": await interaction.response.send_message(view=ViewPatente(), ephemeral=True)
+        elif valor == "situacao": await interaction.response.send_message(view=ViewSituacao(), ephemeral=True)
+        elif valor == "laurea": await interaction.response.send_message(view=ViewLaurea(), ephemeral=True)
+        elif valor == "cursos": await interaction.response.send_message(view=ViewCursos(), ephemeral=True)
+        elif valor == "medalhas": await interaction.response.send_message(view=ViewMedalhas(), ephemeral=True)
+        elif valor == "certificados": await interaction.response.send_modal(ModalCertificado())
+
+# Views de Suporte
+class ViewPatente(ui.View):
+    def __init__(self):
+        super().__init__(timeout=120)
+        self.add_item(SelectGeral(PATENTES, "Selecionar patente", "patente", "s_p"))
+
+class ViewSituacao(ui.View):
+    def __init__(self):
+        super().__init__(timeout=120)
+        self.add_item(SelectGeral([(s, None) for s in SITUACOES], "Selecionar situação", "situacao", "s_s"))
+
+class ViewLaurea(ui.View):
+    def __init__(self):
+        super().__init__(timeout=120)
+        self.add_item(SelectGeral(LAUREAS, "Selecionar láurea", "laurea", "s_l"))
+
+class ViewCursos(ui.View):
+    def __init__(self):
+        super().__init__(timeout=120)
+        self.add_item(SelectGeral(CURSOS, "Gerenciar cursos", "cursos", "s_c", True))
+
+class ViewMedalhas(ui.View):
+    def __init__(self):
+        super().__init__(timeout=120)
+        self.add_item(SelectGeral(MEDALHAS, "Gerenciar medalhas", "medalhas", "s_m", True))
+
+class SelectGeral(ui.Select):
+    def __init__(self, options_data, placeholder, db_field, custom_id, multi=False):
+        self.db_field = db_field
+        self.multi = multi
+        processed_options = []
+        for label, emoji_str in options_data:
+            emoji_obj = parse_emoji(emoji_str)
+            processed_options.append(discord.SelectOption(label=label, emoji=emoji_obj if isinstance(emoji_obj, discord.PartialEmoji) else None))
+
+        super().__init__(placeholder=placeholder, min_values=1, max_values=1, options=processed_options, custom_id=custom_id)
+
+    async def callback(self, interaction: discord.Interaction):
+        if not any(role.id in AUTHORIZED_ROLES for role in interaction.user.roles):
+            return await interaction.response.send_message("❌ Sem permissão.", ephemeral=True)
+
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM fichas WHERE thread_id = ?", (str(interaction.channel_id),))
+        f = cursor.fetchone()
+        conn.close()
+
+        if not f: return await interaction.response.send_message("❌ Ficha não encontrada.", ephemeral=True)
+
+        selecionado = self.values[0]
+        if self.multi:
+            itens = f[self.db_field].split(", ") if f[self.db_field] else []
+            if selecionado in itens: itens.remove(selecionado)
+            else: itens.append(selecionado)
+            final = ", ".join([x for x in itens if x and x not in ["Nenhuma", "Nenhum"]])
+        else:
+            final = selecionado
+
+        update_ficha(f['user_id'], **{self.db_field: final})
         
-        # Opcional: Enviar um aviso temporário de que foi alterado
-        await interaction.followup.send(mensagem_feedback, ephemeral=True)
+        # Atualiza mensagem da thread
+        async for message in interaction.channel.history(limit=20):
+            if message.author == interaction.client.user and message.embeds and message.embeds[0].title == "📁 PRONTUÁRIO POLICIAL":
+                await message.edit(embed=gerar_embed_ficha(f['user_id']))
+                break
+
+        await interaction.response.send_message(f"✅ Atualizado: {selecionado}", ephemeral=True)
 
 class EdicaoFichaView(ui.View):
-
     def __init__(self):
         super().__init__(timeout=None)
-
         self.add_item(MenuPrincipal())
 
 class ModalCriarFicha(ui.Modal, title="🚨 Registro de Novo Policial"):
@@ -472,176 +298,50 @@ class ModalCriarFicha(ui.Modal, title="🚨 Registro de Novo Policial"):
             update_ficha(interaction.user.id, thread_id=str(thread_bundle.thread.id))
             await interaction.followup.send(f"✅ Ficha enviada ao fórum: {thread_bundle.thread.mention}", ephemeral=True)
 
-class ModalCertificado(ui.Modal, title="Gerenciar Certificados"):
-
-    numero = ui.TextInput(
-        label="N° do CERTIFICADO",
-        placeholder="Ex: ROTA-2026-0001",
-        required=True,
-        max_length=50
-    )
-
-async def on_submit(self, interaction: discord.Interaction):
-
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    cursor.execute(
-        "SELECT * FROM fichas WHERE thread_id = ?",
-        (str(interaction.channel_id),)
-    )
-
-    f = cursor.fetchone()
-
-    conn.close()
-
-    if not f:
-        return await interaction.response.send_message(
-            "❌ Ficha não encontrada.",
-            ephemeral=True
-        )
-
-    user_id = f['user_id']
-
-    certificados = (
-        f['certificados'].split(", ")
-        if f['certificados']
-        else []
-    )
-
-    numero = self.numero.value.strip()
-
-    if numero in certificados:
-
-        certificados.remove(numero)
-
-        msg = f"❌ Certificado removido: `{numero}`"
-
-    else:
-
-        certificados.append(numero)
-
-        msg = f"✅ Certificado adicionado: `{numero}`"
-
-    final = ", ".join(certificados)
-
-    update_ficha(
-        user_id,
-        certificados=final
-    )
-
-    # Atualiza mensagem da thread
-    async for message in interaction.channel.history(limit=20):
-
-        if (
-            message.author == interaction.client.user
-            and message.embeds
-            and message.embeds[0].title == "📁 PRONTUÁRIO POLICIAL"
-        ):
-
-            await message.edit(
-                embed=gerar_embed_ficha(user_id),
-                view=EdicaoFichaView()
-            )
-
-            break
-
-    await interaction.response.send_message(
-        msg,
-        ephemeral=True
-    )
+# ==========================================
+# BOT E INICIALIZAÇÃO
+# ==========================================
 
 class BotPolicial(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix="!", intents=discord.Intents.all())
 
     async def setup_hook(self):
-
         init_db()
-
         self.add_view(EdicaoFichaView())
-
         self.add_view(ViewPatente())
         self.add_view(ViewSituacao())
         self.add_view(ViewLaurea())
         self.add_view(ViewCursos())
         self.add_view(ViewMedalhas())
 
-        # botão principal
-        view_registro = ui.View(timeout=None)
-
-        btn = ui.Button(
-            label="Criar Prontuário",
-            style=discord.ButtonStyle.secondary,
-            emoji="📁",
-            custom_id="reg_prontuario"
-        )
-
-        async def btn_callback(interaction):
-            await interaction.response.send_modal(
-                ModalCriarFicha()
-            )
-
-        btn.callback = btn_callback
-
-        view_registro.add_item(btn)
-
-        self.add_view(view_registro)
-
     async def on_ready(self):
         print(f"✅ Bot online como {self.user}")
         await self.verificar_painel_automatico()
 
     async def verificar_painel_automatico(self):
-        # ID do canal onde o botão de registro deve ficar
-        ID_CANAL_REGISTRO = 1501019443013095524  # <--- COLOQUE O ID DO CANAL AQUI
-        
+        ID_CANAL_REGISTRO = 1501019443013095524 
         canal = self.get_channel(ID_CANAL_REGISTRO)
-        if not canal:
-            print("❌ Canal de registro não encontrado para o auto-setup.")
-            return
+        if not canal: return
 
-        # Configuração do Embed (mesmo do seu comando setup)
         embed = discord.Embed(
             title="📁 Emitir Prontuário",
-            description=(
-                "> **Painel de emissão de prontuário policial.**\n"
-                "> Os prontuários são individuais e intransferíveis.\n"
-                "> Somente responsáveis poderão emitir ou editar os prontuários.\n\n"
-                f"> Policiais responsáveis: <@&{AUTHORIZED_ROLES[0]}>\n\n"
-                "> **Clique no botão abaixo para criar seu prontuário.**"
-            ),
+            description=f"> **Painel de emissão de prontuário policial.**\n> Policiais responsáveis: <@&{AUTHORIZED_ROLES[0]}>\n\n> **Clique no botão abaixo para criar seu prontuário.**",
             color=16711424
         )
         embed.set_image(url="https://www.cidadaonet.com.br/storage/conteudo/large/398092680684acacc4a357.jpg")
-        embed.set_footer(text="Batalhão FT Virtual® Todos direitos reservados.")
-
+        
         view = ui.View(timeout=None)
         btn = ui.Button(label="Criar Prontuário", style=discord.ButtonStyle.secondary, emoji="📁", custom_id="reg_prontuario")
-        
-        async def btn_callback(interaction):
-            await interaction.response.send_modal(ModalCriarFicha())
-        
+        async def btn_callback(interaction): await interaction.response.send_modal(ModalCriarFicha())
         btn.callback = btn_callback
         view.add_item(btn)
 
-        # Procura se já existe a mensagem
-        mensagem_existente = None
         async for message in canal.history(limit=10):
-            if message.author == self.user and message.embeds:
-                if message.embeds[0].title == "📁 Emitir Prontuário":
-                    mensagem_existente = message
-                    break
-
-        if mensagem_existente:
-            # Apenas atualiza a mensagem antiga se houver mudanças no código
-            await mensagem_existente.edit(embed=embed, view=view)
-            print("🔄 Painel de registro atualizado automaticamente.")
-        else:
-            # Se alguém apagou a mensagem, o bot manda de novo
-            await canal.send(embed=embed, view=view)
-            print("✨ Novo painel de registro enviado (não foi encontrado anterior).")
+            if message.author == self.user and message.embeds and message.embeds[0].title == "📁 Emitir Prontuário":
+                await message.edit(embed=embed, view=view)
+                return
+        await canal.send(embed=embed, view=view)
 
 bot = BotPolicial()
-
 bot.run(TOKEN)
