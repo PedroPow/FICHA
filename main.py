@@ -307,13 +307,30 @@ class BotPolicial(commands.Bot):
         super().__init__(command_prefix="!", intents=discord.Intents.all())
 
     async def setup_hook(self):
+
         init_db()
+
         self.add_view(EdicaoFichaView())
-        self.add_view(ViewPatente())
-        self.add_view(ViewSituacao())
-        self.add_view(ViewLaurea())
-        self.add_view(ViewCursos())
-        self.add_view(ViewMedalhas())
+
+        view_registro = ui.View(timeout=None)
+
+        btn = ui.Button(
+            label="Criar Prontuário",
+            style=discord.ButtonStyle.secondary,
+            emoji="📁",
+            custom_id="reg_prontuario"
+        )
+
+        async def btn_callback(interaction):
+            await interaction.response.send_modal(
+                ModalCriarFicha()
+            )
+
+        btn.callback = btn_callback
+
+        view_registro.add_item(btn)
+
+        self.add_view(view_registro)
 
     async def on_ready(self):
         print(f"✅ Bot online como {self.user}")
